@@ -1,5 +1,4 @@
 //  https://www.acmicpc.net/problem/1463
-
 import java.util.*;
 import java.io.*;
 
@@ -15,25 +14,13 @@ public class Main {
         arr[2]=1;
         arr[3]=1;
         for (int i = 4; i <= N; i++) {
-            int a=0,b=0;
-            int cur = i;
-            while (cur % 2 != 0) {
-                cur--;
-                a++;
+            arr[i] = arr[i-1]+1;
+            if(i%2==0){
+                arr[i]=Math.min(arr[i],arr[i/2]+1);
             }
-            cur/=2;
-            a++;
-            a+=arr[cur];
-            
-            cur = i;
-            while (cur % 3 != 0) {
-                cur--;
-                b++;
+            if(i%3==0){
+                arr[i]=Math.min(arr[i],arr[i/3]+1);
             }
-            cur/=3;
-            b++;
-            b+=arr[cur];
-            arr[i]=Math.min(a,b);
         }
         bw.write(String.valueOf(arr[N]));
         bw.flush();
